@@ -139,7 +139,16 @@ private extension ReviewCell {
         contentView.addSubview(showMoreButton)
         showMoreButton.contentVerticalAlignment = .fill
         showMoreButton.setAttributedTitle(Config.showMoreText, for: .normal)
+        
+        /// Обработчик кнопки "Показать полностью"
+        showMoreButton.addTarget(self, action: #selector(showMoreButtonTapped), for: .touchUpInside)
     }
+    
+    @objc private func showMoreButtonTapped() {
+        guard let config = config else { return }
+        config.onTapShowMore(config.id)
+    }
+    
     
     func setupAvatarImageView() {
         contentView.addSubview(avatarImageView)
